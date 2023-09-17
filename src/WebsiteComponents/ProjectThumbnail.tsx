@@ -3,7 +3,7 @@ import styled from "styled-components";
 interface ThumbnailProps {
     title?: string;
     image?: string;
-    description?: string;
+    link?: string;
 }
 
 
@@ -14,8 +14,12 @@ const OuterBlock = styled.div`
     justify-content: center;
     align-items; center;
     border-style: solid;
-    border-width: 4px;
-    border-color: #3E5C76;  
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: #3E5C76;
+    margin: 12px;
+    max-width: 20%;
+    height: auto;
 `
 
 const RepoImage = styled.img`
@@ -33,18 +37,18 @@ const RepoImage = styled.img`
 const ThumbnailTitle = styled.h4`
     text-align: center;
 `
-const ThumbnailDescription = styled.p`
+const ThumbnailLink = styled.a`
     text-align: center;
 `
 
 const ProjectThumbnail = (props: ThumbnailProps) => {
-    const { title, image, description } = props;
+    const { title, image, link } = props;
     const defaultImage = 'https://cdn.cloudflare.steamstatic.com/steam/apps/960090/capsule_616x353.jpg?t=1689560104';
     return (
         <OuterBlock>
             <RepoImage src={image ?? defaultImage}/>
             <ThumbnailTitle>{title}</ThumbnailTitle>
-            <ThumbnailDescription>{description}</ThumbnailDescription>
+            <ThumbnailLink href={link}>{link}</ThumbnailLink>
         </OuterBlock>
     )
 }

@@ -12,7 +12,8 @@ type RepoLightweightData = {
 const ThumbnailBlock = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
+    flex-wrap: wrap;
 `
 
 const ThumbnailList = () => {
@@ -38,7 +39,6 @@ const [repoData, setRepoData] = useState<RepoLightweightData[]>([]);
         };
         const response = await fetch(UoB.baseURL, params);
         const json = await response.json();
-        console.log('JSON DATA: ', json);
         if(json) {
           preprocessData(json.data.viewer.repositories.edges);
         }
@@ -50,7 +50,7 @@ const [repoData, setRepoData] = useState<RepoLightweightData[]>([]);
 
   return (
     <ThumbnailBlock>
-        {repoData.map(item => <ProjectThumbnail key={item.url} title={item.name} description={item.url}/>)}
+        {repoData.map(item => <ProjectThumbnail key={item.url} title={item.name} link={item.url}/>)}
     </ThumbnailBlock>
   )
 }

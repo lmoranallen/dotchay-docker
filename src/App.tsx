@@ -1,20 +1,34 @@
-import { useEffect, useState } from 'react';
-import UoB from './universityGithubDB';
-import {query as UOBQuery} from './queries/getUniversityGithubRepositories';
-import logo from './logo.svg';
 import './App.css';
 import LeadingTitle from './WebsiteComponents/LeadingTitle';
 import Page from './WebsiteComponents/StartPage';
-import ProjectThumbnail from './WebsiteComponents/ProjectThumbnail';
 import ThumbnailList from './WebsiteComponents/ThumbnailList';
+import styled from 'styled-components';
+import { colours } from './utils/colours';
+
+
+const PageHeader = styled.div`
+  background-color: ${colours.magnolia};
+`
+
+const ThumbnailContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: end;
+  align-items: end;
+`
 
 function App() {
 
   return (
-    <Page>
-        <LeadingTitle name={'lee.chay'} colour={'#90AA86'}/>
-        <ThumbnailList/>
-    </Page>
+    <PageHeader>
+    <LeadingTitle name={'chay'} colour={'#90AA86'}/>
+      <Page>
+          <ThumbnailContainer>
+            <ThumbnailList/>
+          </ThumbnailContainer>
+      </Page>
+    </PageHeader>
   );
 }
 

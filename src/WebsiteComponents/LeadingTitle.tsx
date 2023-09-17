@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import { colours } from '../utils/colours';
 
 type LeadingTitleProps = {
     name: string, 
@@ -10,10 +11,9 @@ const PrettyTitle = styled.h1`
         font-size: 8em;
         text-align: start;
         justify-content: start;
-        color: #90AA86;
+        color: ${colours.softGreen};
         margin-top: 8px;
         margin-left: 8px;
-        
     `;
 
 const LeadingTitle = (props: LeadingTitleProps) => {

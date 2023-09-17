@@ -2,7 +2,7 @@ export const query = {
   query: `
   {
     viewer {
-      repositories (first:15) {
+      repositories (last:12) {
         edges {
           node {
             name

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colours } from "../utils/colours";
 
 interface PageProps {
     pageName?: number
@@ -9,13 +10,23 @@ const PageStyling = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    padding: 1em;
-    background-color: #F8F0FB;
+    width: 100%;
+`
+
+const PageRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: end;
 `
 
 
 export const Page:React.FC<PageProps> = ({children, pageName}) => {
-    return <PageStyling>{children}</PageStyling>    
+    return (
+        <PageStyling>
+            <PageRow>{children}</PageRow>
+        </PageStyling> 
+    )   
 }
     
 export default Page;
