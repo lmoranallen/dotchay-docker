@@ -1,24 +1,28 @@
-import React from 'react'
+import React, { ButtonHTMLAttributes, useState } from 'react'
 import styled from 'styled-components';
 import { colours } from '../utils/colours';
 
 type LeadingTitleProps = {
     name: string, 
-    colour: string, 
+    onClick: () => void;
 };
 
-const PrettyTitle = styled.h1`
-        font-size: 8em;
-        text-align: start;
-        justify-content: start;
-        color: ${colours.softGreen};
-        margin-top: 8px;
-        margin-left: 8px;
-    `;
+
+
+const Title = styled.h1`
+    font-size: 8em;
+    text-align: start;
+    justify-content: start;
+    color: ${colours.softGreen};
+    margin-top: 0;
+    margin-left: 8px;
+`;
 
 const LeadingTitle = (props: LeadingTitleProps) => {
-    const { name: title, colour: dotColour } = props;
-    return <PrettyTitle>.{title}</PrettyTitle>
+    const { name: title, onClick } = props;
+    return <div onClick={onClick}><Title>{title}</Title></div>
 }
+
+
 
 export default LeadingTitle;
