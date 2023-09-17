@@ -1,25 +1,20 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import UoB from './universityGithubDB';
+import {query as UOBQuery} from './queries/getUniversityGithubRepositories';
 import logo from './logo.svg';
 import './App.css';
+import LeadingTitle from './WebsiteComponents/LeadingTitle';
+import Page from './WebsiteComponents/StartPage';
+import ProjectThumbnail from './WebsiteComponents/ProjectThumbnail';
+import ThumbnailList from './WebsiteComponents/ThumbnailList';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Page>
+        <LeadingTitle name={'lee.chay'} colour={'#90AA86'}/>
+        <ThumbnailList/>
+    </Page>
   );
 }
 
