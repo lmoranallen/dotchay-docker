@@ -10,19 +10,25 @@ import DashboardTray from './WebsiteComponents/DashboardTray';
 
 const PageHeader = styled.html`
   background-color: ${colours.magnolia};
-  position:relative;
+  position:absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  height: auto;
+  width: 100vw;
 `
 
-const ThumbnailContainer = styled.div`
+const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
+  height: 36em;
   justify-content: end;
   align-items: end;
+  background-color: ${colours.bluishGrey};
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 16px;
+  margin-right: 16px;
 `
 
 function App() {
@@ -31,14 +37,13 @@ function App() {
 
   return (
     <>
-    <PageHeader>
     {openDashboard ? <DashboardTray onClose={() => setOpenDashboard(false)} /> : <></>}
+    <PageHeader>
     <LeadingTitle name={'chay'} onClick={() => setOpenDashboard(true)}/>
       <Page>
-          <ThumbnailContainer>
-            <ThumbnailList/>
-          </ThumbnailContainer>
-          <h1>{`${openDashboard}`}</h1>
+          <PageContainer>
+
+          </PageContainer>
       </Page>
     </PageHeader>
     </>

@@ -4,7 +4,7 @@ import { colours } from '../utils/colours';
 
 type LeadingTitleProps = {
     name: string, 
-    onClick: () => void;
+    onClick?: () => void;
 };
 
 

@@ -1,25 +1,34 @@
 import styled from "styled-components";
 import { colours } from "../utils/colours";
+import { Link } from "react-router-dom";
 
 type DashboardProps = {
     onClose: () => void;
 }
 
 const TrayView = styled.div`
-    position: sticky;
-    display; flex;
-    inset: 0;
+    position: fixed;
+    display: block;
     height: 100vh;
-    flex: 1 0 auto;
     width: 20%;
     z-index: 10;
     background-color: ${colours.bluishGrey};
-    margin: 0;
-    padding: 0;
 `
 
-const TrayItem = styled.div`
+const TrayList = styled.ul`
+    list-style-type: none;
+`
+
+const TrayItem = styled.li`
     background-opacity: 75%;
+    border-style: solid;
+    border-width: 1px;
+    padding: 2em;
+    margin: 16px;
+    text-color: white;
+`
+
+const TrayItemLink = styled.a`
     padding: 1em;
     text-color: white;
 `
@@ -27,27 +36,30 @@ const TrayItem = styled.div`
 const CloseDashboard = styled.div`
     padding: 4px;
     border-style: solid;
+    z-index: 15;
     background-color: ${colours.saffronYellow};
 `
 
 const DashboardTray = (props: DashboardProps) => {
     const {onClose} = props;
     return (
-        <>
-    
         <TrayView>
-            <TrayItem>
-                <ul>
-                    <li>About Me</li>
-                    <li>University Projects</li>
-                    <li>Hobbies</li>
-                    <li>Visuals [TBA]</li>
-                    <li>Data Mapping</li>
-                </ul>
-                <CloseDashboard onClick={onClose}> X</CloseDashboard>
-            </TrayItem>
+            <TrayList>
+                <TrayItem>
+                        <Link to={'/about'}><TrayItemLink>About Me</TrayItemLink></Link>
+                </TrayItem>
+                <TrayItem>
+                    <Link to={'/projects/uni'}><TrayItemLink>Univeristy Projects</TrayItemLink></Link>
+                </TrayItem>
+                <TrayItem>
+                <Link to={'/roadmaps'}><TrayItemLink>Development Roadmaps</TrayItemLink></Link>
+                </TrayItem>
+                <TrayItem>
+                <Link to={'/error'}><TrayItemLink>Visuals [TBA]</TrayItemLink></Link>
+                </TrayItem>
+                <TrayItem><CloseDashboard onClick={onClose}> X</CloseDashboard></TrayItem>
+            </TrayList>
         </TrayView>
-        </>
     )
 }
 
