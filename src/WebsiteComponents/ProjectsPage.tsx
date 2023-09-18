@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import { colours } from "../utils/colours";
 import LeadingTitle from "./LeadingTitle";
+import ThumbnailList from "./ThumbnailList";
 
 
 const PageHeader = styled.div`
   background-color: ${colours.magnolia};
-  height: auto;
+  height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -14,21 +15,20 @@ const PageHeader = styled.div`
 const PageContainer = styled.div`
   display: flex;
   height: 36em;
-  width: 48em;
+  width: 50%;
   align-self: center;
-  background-color: ${colours.bluishGrey};
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 16px;
   margin: 16px;
 `
 
 export const ProjectsPage = () => {
     return (
+        <>
         <PageHeader>
           <LeadingTitle name={'Projects'}/>
           <PageContainer>
+            <ThumbnailList/>
           </PageContainer>
         </PageHeader>
+        </>
     );
 }

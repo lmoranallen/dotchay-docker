@@ -4,11 +4,11 @@ import LeadingTitle from "./LeadingTitle";
 
 
 const PageHeader = styled.div`
-  background-color: ${colours.magnolia};
-  height: auto;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
+    background-color: ${colours.magnolia};
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
 `
 
 const PageContainer = styled.div`
