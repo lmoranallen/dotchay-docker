@@ -55,6 +55,9 @@ const DashboardTray = (props: DashboardProps) => {
                 <Link to={'/roadmaps'}><TrayItemLink>Development Roadmaps</TrayItemLink></Link>
                 </TrayItem>
                 <TrayItem>
+                <Link to={'/fitness'}><TrayItemLink>Gym and Fitness</TrayItemLink></Link>
+                </TrayItem>
+                <TrayItem>
                 <Link to={'/error'}><TrayItemLink>Visuals [TBA]</TrayItemLink></Link>
                 </TrayItem>
                 <TrayItem><CloseDashboard onClick={onClose}> X</CloseDashboard></TrayItem>

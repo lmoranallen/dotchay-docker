@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
-import UoB from "../universityGithubDB";
-import {query as UOBQuery} from '../queries/getUniversityGithubRepositories';
+import UoB, { Industry } from "../universityGithubDB";
+import { query } from '../queries/getGithubRepositories';
 import ProjectThumbnail from "./ProjectThumbnail";
 import styled from "styled-components";
+import RepoSelector from "./RepoSelectionList";
 
 type RepoLightweightData = {
     name: string, 
     url: string,
 }
+
+const ThumbnailContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+`
 
 const ThumbnailBlock = styled.div`
     display: flex;
@@ -18,6 +25,14 @@ const ThumbnailBlock = styled.div`
 
 const ThumbnailList = () => {
 const [repoData, setRepoData] = useState<RepoLightweightData[]>([]);
+const [selectedRepo, setSelectedRepo] = useState('University');
+
+
+  const handleChange = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const value = e?.currentTarget?.textContent as string;
+    console.log('Input inside: ', e?.currentTarget?.textContent);
+    setSelectedRepo(value);
+  }
 
   const preprocessData= (response: any) => {
     let data:RepoLightweightData[]= [];
@@ -31,13 +46,15 @@ const [repoData, setRepoData] = useState<RepoLightweightData[]>([]);
   }
 
   useEffect(() => {
+    console.log('Repo:' ,selectedRepo);
+    const repo = selectedRepo === 'University' ? UoB : Industry;
     const getGithubData = async () => {
         const params:any = {
             method: "POST", 
-            headers: UoB.headers,
-            body: JSON.stringify(UOBQuery)
+            headers: repo.headers,
+            body: JSON.stringify(query)
         };
-        const response = await fetch(UoB.baseURL, params);
+        const response = await fetch(repo.baseURL, params);
         const json = await response.json();
         if(json) {
           preprocessData(json.data.viewer.repositories.edges);
@@ -45,13 +62,16 @@ const [repoData, setRepoData] = useState<RepoLightweightData[]>([]);
     };
 
     getGithubData();
-  }, []);
+  }, [selectedRepo, setSelectedRepo]);
 
 
   return (
-    <ThumbnailBlock>
-        {repoData.map(item => <ProjectThumbnail key={item.url} title={item.name} link={item.url}/>)}
-    </ThumbnailBlock>
+    <ThumbnailContainer>
+      <RepoSelector onClick={(e:any) => handleChange(e)}/>
+      <ThumbnailBlock>
+          {repoData.map(item => <ProjectThumbnail key={item.url} title={item.name} link={item.url}/>)}
+      </ThumbnailBlock>
+    </ThumbnailContainer>
   )
 }
 

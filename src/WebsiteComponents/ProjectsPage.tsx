@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { colours } from "../utils/colours";
 import LeadingTitle from "./LeadingTitle";
 import ThumbnailList from "./ThumbnailList";
+import RepoSelector from "./RepoSelectionList";
 
 
 const PageHeader = styled.div`
@@ -21,6 +22,7 @@ const PageContainer = styled.div`
 `
 
 export const ProjectsPage = () => {
+
     return (
         <>
         <PageHeader>

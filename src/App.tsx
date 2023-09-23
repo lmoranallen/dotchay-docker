@@ -1,7 +1,6 @@
 import './App.css';
 import LeadingTitle from './WebsiteComponents/LeadingTitle';
 import Page from './WebsiteComponents/StartPage';
-import ThumbnailList from './WebsiteComponents/ThumbnailList';
 import styled from 'styled-components';
 import { colours } from './utils/colours';
 import { useState } from 'react';

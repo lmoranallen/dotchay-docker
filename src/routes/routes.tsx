@@ -1,5 +1,6 @@
 import App from "../App";
 import ErrorPage from "../WebsiteComponents/ErrorPage";
+import { FitnessPage } from "../WebsiteComponents/FitnessPage";
 import { PersonalPage } from "../WebsiteComponents/PersonalPage";
 import { ProjectsPage } from "../WebsiteComponents/ProjectsPage";
 import { RoadmapPage } from "../WebsiteComponents/RoadmapPage";
@@ -20,6 +21,11 @@ export const routes = [
     element: <ProjectsPage />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: '/fitness', 
+    element: <FitnessPage/>,
+    errorElement: <ErrorPage />,
+  }, 
   {
     path: '/roadmaps',
     element: <RoadmapPage />,
