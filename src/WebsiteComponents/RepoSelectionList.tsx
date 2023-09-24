@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import styled from "styled-components";
 import { colours } from "../utils/colours";
 
 type SelectorProps = {
-    onClick?: (e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+    getRepoType: Dispatch<SetStateAction<string>>;
 }
 
 const RepoContainer = styled.div`
@@ -38,27 +38,27 @@ const SelectedLine = styled.hr`
 `
 
 const RepoSelector = (props: SelectorProps) => {
+    const { getRepoType } = props;
     const [selectedRepo, setSelectedRepo] = useState('University')
     const hasSelectedIndustryRepo = selectedRepo === 'University';
 
-    const handleSelect = (e?: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        const value = e?.currentTarget?.textContent as string;
-        setSelectedRepo(value);
-    }; 
+    const handleSwitch = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        const val = event?.currentTarget?.textContent as string;
+        setSelectedRepo(val);
+        getRepoType(val);
+    }
 
     return (
         <RepoContainer>
             <Block>
-                <RepoButton onClick={(e) => handleSelect(e)}>
+                <RepoButton onClick={(e) => handleSwitch(e)}>
                     <ButtonText>University</ButtonText> 
                     {hasSelectedIndustryRepo && <SelectedLine/>}
                 </RepoButton>
-                {/* {hasSelectedIndustryRepo && <SelectedLine/>} */}
-                <RepoButton onClick={(e)=> handleSelect(e)}>
+                <RepoButton onClick={(e)=> handleSwitch(e)}>
                     <ButtonText>Industry</ButtonText>  
                     {!hasSelectedIndustryRepo && <SelectedLine/>}
-                </RepoButton>
-                {/* {!hasSelectedIndustryRepo && <SelectedLine/>} */}   
+                </RepoButton> 
             </Block>
         </RepoContainer>
 

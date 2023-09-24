@@ -5,6 +5,11 @@ import ProjectThumbnail from "./ProjectThumbnail";
 import styled from "styled-components";
 import RepoSelector from "./RepoSelectionList";
 
+interface RepositoryQueryData {
+  repository: RepoLightweightData[];
+  name: string;
+}
+
 type RepoLightweightData = {
     name: string, 
     url: string,
@@ -24,17 +29,11 @@ const ThumbnailBlock = styled.div`
 `
 
 const ThumbnailList = () => {
-const [repoData, setRepoData] = useState<RepoLightweightData[]>([]);
-const [selectedRepo, setSelectedRepo] = useState('University');
+const [repoData, setRepoData] = useState<RepositoryQueryData>({repository: [], name: '',});
 
+const [selectorData, setSelectorData] = useState('University');
 
-  const handleChange = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const value = e?.currentTarget?.textContent as string;
-    console.log('Input inside: ', e?.currentTarget?.textContent);
-    setSelectedRepo(value);
-  }
-
-  const preprocessData= (response: any) => {
+  const preprocessData= (response: any, name: string) => {
     let data:RepoLightweightData[]= [];
     response.forEach( (r:any) => {
         const name = r.node.name
@@ -42,12 +41,14 @@ const [selectedRepo, setSelectedRepo] = useState('University');
         data.push({name: name, url: url});
 
     });
-    setRepoData(data);
+    setRepoData({repository: data, name: name,});
   }
 
   useEffect(() => {
-    console.log('Repo:' ,selectedRepo);
-    const repo = selectedRepo === 'University' ? UoB : Industry;
+
+    const repo = (selectorData === 'University') ? UoB : Industry;
+    console.log('Repo: ', repo, selectorData);
+
     const getGithubData = async () => {
         const params:any = {
             method: "POST", 
@@ -57,19 +58,19 @@ const [selectedRepo, setSelectedRepo] = useState('University');
         const response = await fetch(repo.baseURL, params);
         const json = await response.json();
         if(json) {
-          preprocessData(json.data.viewer.repositories.edges);
+          preprocessData(json.data.viewer.repositories.edges, selectorData);
         }
     };
 
     getGithubData();
-  }, [selectedRepo, setSelectedRepo]);
+  }, [selectorData]);
 
 
   return (
     <ThumbnailContainer>
-      <RepoSelector onClick={(e:any) => handleChange(e)}/>
+      <RepoSelector getRepoType={setSelectorData}/>
       <ThumbnailBlock>
-          {repoData.map(item => <ProjectThumbnail key={item.url} title={item.name} link={item.url}/>)}
+          {repoData.repository.map(item => <ProjectThumbnail key={item.url} title={item.name} link={item.url}/>)}
       </ThumbnailBlock>
     </ThumbnailContainer>
   )
