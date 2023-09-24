@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import './index.css';
 import { routes } from './routes/routes';
+import Wrapper from './Wrapper';
 
 const router = createBrowserRouter(routes)
 
@@ -14,6 +15,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+      <Wrapper>
+        <RouterProvider router={router}/>
+      </Wrapper>
   </React.StrictMode>
 );

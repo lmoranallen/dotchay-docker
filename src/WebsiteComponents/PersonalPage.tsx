@@ -25,10 +25,10 @@ const PageContainer = styled.div`
 
 export const PersonalPage = () => {
     return (
-        <PageHeader>
+        // <PageHeader>
           <LeadingTitle name={'About Me'}/>
-          <PageContainer>
-          </PageContainer>
-        </PageHeader>
+        //   <PageContainer>
+        //   </PageContainer>
+        // </PageHeader>
     );
 }

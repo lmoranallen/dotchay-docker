@@ -18,7 +18,7 @@ type RepoLightweightData = {
 const ThumbnailContainer = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    
 `
 
 const ThumbnailBlock = styled.div`
@@ -47,7 +47,6 @@ const [selectorData, setSelectorData] = useState('University');
   useEffect(() => {
 
     const repo = (selectorData === 'University') ? UoB : Industry;
-    console.log('Repo: ', repo, selectorData);
 
     const getGithubData = async () => {
         const params:any = {

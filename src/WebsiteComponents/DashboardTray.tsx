@@ -28,7 +28,7 @@ const TrayItem = styled.li`
     text-color: white;
 `
 
-const TrayItemLink = styled.a`
+const TrayItemLink = styled.div`
     padding: 1em;
     text-color: white;
 `
@@ -49,7 +49,7 @@ const DashboardTray = (props: DashboardProps) => {
                         <Link to={'/about'}><TrayItemLink>About Me</TrayItemLink></Link>
                 </TrayItem>
                 <TrayItem>
-                    <Link to={'/projects/uni'}><TrayItemLink>Univeristy Projects</TrayItemLink></Link>
+                    <Link to={'/projects/uni'}><TrayItemLink>Projects</TrayItemLink></Link>
                 </TrayItem>
                 <TrayItem>
                 <Link to={'/roadmaps'}><TrayItemLink>Development Roadmaps</TrayItemLink></Link>
